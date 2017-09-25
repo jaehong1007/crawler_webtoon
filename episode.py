@@ -78,10 +78,10 @@ class Episode:
         :return:
         """
     def _save_images(self):
+
+        params = {'titleId': self.webtoon.title_id, 'no': self.no}
         url_contents = 'http://comic.naver.com/webtoon/list.nhn?' \
                        + urlencode(params)
-        params = {'titleId': self.webtoon.title_id, 'no': self.no}
-
         response = requests.get(url_contents, params=params)
         soup = BeautifulSoup(response.text, 'lxml')
         img_list = soup.select_one('div.wt_viewer').find_all('img')
@@ -105,12 +105,12 @@ class Episode:
             img_list_html += cur_img_tag
 
         detail_html.replace('*contents*', img_list_html)
-        with open(f'webtoon/{self.webtoon.title_id}/{self.no}.html', 'wt')
+        with open(f'webtoon/{self.webtoon.title_id}/{self.no}.html', 'wt') as f:
             f.write(detail_html)
 
 
 if __name__ == '__main__':
-    el = pickle.load(open('db/697680.txt', 'rb'))
+    el = pickle.load(open('db/697654.txt', 'rb'))
     e = el[0]
     e._save_images()
 
