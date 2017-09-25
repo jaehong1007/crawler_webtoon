@@ -1,12 +1,11 @@
-import requests
-
 from collections import namedtuple
 from urllib.parse import urlparse, parse_qs
+
+import requests
 from bs4 import BeautifulSoup
 
-
 # Episode = namedtuple('Episode', ['no', 'img_url', 'title', 'rating', 'created_date'])
-from webtoon.episode import Episode
+from episode import Episode
 
 Webtoon = namedtuple('Webtoon', ['title_id', 'url_thumbnail', 'title'])
 
